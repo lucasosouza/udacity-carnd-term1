@@ -1,11 +1,11 @@
-**Finding Lane Lines on the Road** 
+# Finding Lane Lines on the Road
 <img src="laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
 
 When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
 
 In this project you will detect lane lines in images using Python and OpenCV.  OpenCV means "Open-Source Computer Vision", which is a package that has many useful tools for analyzing images.  
 
-**Step 1:** Getting setup with Python
+### Step 1: Getting setup with Python
 
 To do this project, you will need Python 3 along with the numpy, matplotlib, and OpenCV libraries, as well as Jupyter Notebook installed. 
 
@@ -19,7 +19,7 @@ If you already have Anaconda for Python 2 installed, you can create a separate e
 
 `>  source activate yourNewEnvironment`
 
-**Step 2:** Installing OpenCV
+### Step 2: Installing OpenCV
 
 Once you have Anaconda installed, first double check you are in your Python 3 environment:
 
@@ -41,7 +41,7 @@ then to test if OpenCV is installed correctly:
 `>>>`  
 (Ctrl-d to exit Python)
 
-**Step 3:** Installing moviepy  
+### Step 3: Installing moviepy  
 
 We recommend the "moviepy" package for processing video in this project (though you're welcome to use other packages if you prefer).  
 
@@ -56,7 +56,7 @@ and check that the install worked:
 `>>>`  
 (Ctrl-d to exit Python)
 
-**Step 4:** Opening the code in a Jupyter Notebook
+### Step 4: Opening the code in a Jupyter Notebook
 
 You will complete this project in a Jupyter notebook.  If you are unfamiliar with Jupyter Notebooks, check out <A HREF="https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/" target="_blank">this link</A> to get started.
 

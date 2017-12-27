@@ -1,9 +1,4 @@
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Advanced Lane Finding Project**
+# Advanced Lane Finding Project
 
 The goals / steps of this project are the following:
 
@@ -30,17 +25,17 @@ The goals / steps of this project are the following:
 ###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
 This writeup is just a short summary, as required in the project instructions. Please make sure to go through P4-image and P4-video for the full code, images and implementation. Both notebooks are well organized in term of project goals and are a more complete substitute for this write up, and you can read it in the same sequence of this writeup, so I will not mention code lines. 
 
 Support functions can be found in support_func.py. Most of the support functions were first implemented in P4-image notebook, in a step by step approach, and then converted into functions to be used for the video pipeline.
 
-###Camera Calibration
+### Camera Calibration
 
-####1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
+#### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
 I started by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
@@ -48,14 +43,14 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 ![alt text](distortion_correction.png)
 
-###Pipeline (single images)
+### Pipeline (single images)
 
 ####1. Provide an example of a distortion-corrected image.
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 
 ![alt text](undistorted_car_image.png)
 
-####2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
+#### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
 For the images, I used a combination of region selection, color and gradient thresholds to generate a binary image.  Here's an example of my output for this step:
 
@@ -81,7 +76,7 @@ For the video, though, I've experimented with a different approach which had bet
 
 ![alt text](enhanced_images.png)
 
-####3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
+#### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
 For the perspective transform, I identified 4 points in a straight lane image that could be used as a source to calculate the M matrix for perspective transform. For the destination, I've defined min and max height and a 300 pixels offset for the width each side, making a rectangle.
 
@@ -106,7 +101,7 @@ Full implementation in P4 notebook.
 
 ![alt text](warped_image.png)
 
-####4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+#### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 To identify lane-line pixels, I've used Udacity's approach of slicing the image vertically into several slices (18), using histogram peaks to define the most probable location of the lane in the first slice, and sliding vertical windows based on the center and fixed width to determine where to look for the centers in the next slices.
 
@@ -114,7 +109,7 @@ After detecting the center for every slice, I've fitted a second order polynomia
 
 ![alt text](sliding_windows.png)
 
-####5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+#### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
 The radius of the curvature and the position of the vehicle is defined in the function measure_curvature, in support_func.py, using the formula described in the course. 
 
@@ -123,7 +118,7 @@ The radius of the curvature and the position of the vehicle is defined in the fu
 The position of the vehicle with respect to center is calculated directly in the image pipeline, defined in P4-video, which is simply the distance between the image center and the lane center
 
 
-####6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
 Here is one example. Several more are plotted in P4-video.
 
@@ -131,17 +126,17 @@ Here is one example. Several more are plotted in P4-video.
 
 ---
 
-###Pipeline (video)
+### Pipeline (video)
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
 Here's a [link to my video result](output.mp4)
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 I've done many interations on this project, so a lot of my implementation is based on experimentation. I've mostly experimented of how to keep track of the lanes in video - what attributes should I keep for each line, when should I consider data from previous frames and when should I use new data.
 

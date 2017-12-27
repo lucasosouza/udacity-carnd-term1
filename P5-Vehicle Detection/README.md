@@ -1,9 +1,4 @@
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Vehicle Detection Project**
+# Vehicle Detection Project
 
 The goals / steps of this project are the following:
 
@@ -27,15 +22,15 @@ The goals / steps of this project are the following:
 ###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
 You're reading it! Along with this writeup, which is just a summary based on the template writeup, there is a notebook containing all code in the sequence of the goals described above. If you follow the notebook along the writeup the code will match the same sequence, so I will not mention code lines.
 
-###Histogram of Oriented Gradients (HOG)
+### Histogram of Oriented Gradients (HOG)
 
-####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
+#### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
@@ -50,7 +45,7 @@ Here is an example using the gray image and HOG parameters of `orientations=9`, 
 
 ![alt text](noncar_hog.png)
 
-####1b. Other features
+#### 1b. Other features
 
 I've also two other groups of features, spatial binning of color in RGB color space, and histograms per channel, also using RGB color space.
 
@@ -67,7 +62,7 @@ And non-car image:
 ![alt text](colorhist_noncar.png)
 
 
-####2. Explain how you settled on your final choice of parameters.
+#### 2. Explain how you settled on your final choice of parameters.
 
 I tried various combinations, and evaluated their performance by measuring the classifier's accuracy in predicting a car.
 
@@ -90,13 +85,13 @@ For the color histogram features, the parameters are:
 * color_space = 'RGB'
 * hist_bins = 32 # 16
 
-####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
+#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 I trained a linear SVM using HOG, spatial bin and color histogram features. My final choice of features yields a classification accuracy of 99.16%, validated on 20% of the data randomly selected.
 
-###Sliding Window Search
+### Sliding Window Search
 
-####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
+#### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
 For the sliding window search, I've done two modifications to the plain algorithm:
 
@@ -121,7 +116,7 @@ Here is the result:
 
 The final model has an overlap of windows of 75%.
 
-####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to try to minimize false positives and reliably detect cars?
+#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to try to minimize false positives and reliably detect cars?
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
@@ -148,10 +143,10 @@ The more than 50% cut-off can be increased later by making a make a more precise
 
 ### Video Implementation
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 Here's a [link to my video result](./output.mp4)
 
-####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+#### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 The method used to combine overlapping bounding boxes in images is the heatmap, described in the Image Implementaiton section.
 
@@ -181,9 +176,9 @@ All these parameters discussed in the image and video false positive discussion 
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 The approach is mainly detailed above, so I will focus on issues faced and what can be improved:
 

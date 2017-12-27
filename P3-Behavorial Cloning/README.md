@@ -1,12 +1,4 @@
-#**Behavioral Cloning** 
-
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Behavrioal Cloning Project**
+# Behavioral Cloning Project
 
 The goals / steps of this project are the following:
 
@@ -28,12 +20,12 @@ The goals / steps of this project are the following:
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -41,24 +33,24 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network 
 * writeup.md or writeup.pdf summarizing the results
 
-####2. Submssion includes functional code
+#### 2. Submssion includes functional code
 
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 
 I've tried different approaches for model architecture, but the final one is in neural_net.py, and described in details below.
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 The single dropout layer included seems to be at the optimal point to avoid overfitting and not underfit the model - adding another dropout layer, or removing the single dropout added, have a negative impact on the results.
 
@@ -66,19 +58,19 @@ The model was tested by running it through the simulator and ensuring that the v
 
 A simple regularization strategy used was to train the model less - the loss function was not an accurate predictor of how the car would drive, so from my experimentation I've come to the conclusion that training less was a good way of avoiding overfitting.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually.
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 For the training data, I've driven the car using a joystick. I have not used Udacity data, as this project was completed before Udacity data was available.
 
 I have driven it as racing car, using the entire width of the lane, making closed and open curves alternatively to record as more options as possible.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 I've tried the model described in nvidia paper, with 200x66 images, and a lot of layers. In all tests I run I've got very similar results, though, with a much smaller network and 32x16 images and 3 channels. I was first using a single channel (Y), but results improved a lot when I switched back to RGB.
 
@@ -92,7 +84,7 @@ To test, I've ran the model in the simulator to see how well the car was driving
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 My final model has the following layers:
 Features Creation:
@@ -112,7 +104,7 @@ Classifier:
 
 For all layers tanh was used as the non linear activation function.
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 For the final model, I've recorded 3 types of driving: regular, and left-to-right and right-to-left corrections. In the correction trainings I would only consider the rows in which the angle indicates it is a correction (in right-to-left, the negative angles for example). That helped in making the training process faster, so I could avoid hitting pause and record button a lot of times.
 
@@ -131,7 +123,7 @@ I've tinkered with removing outliers, above or below a datapoint, which did not 
 
 I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
-####4. Other considerations
+#### 4. Other considerations
 
 What I found most interesting about this project is gathering data. That was very challenging for me - I got bad results with keyboard, and once I changed to joystick, I then had the issue I can't handle a joystick (last videogame I had was a 16bits Mega Drive, no joystick back then). So my training data is not good, and following the saying "trash in trash out", my model would therefore follow it.
 
